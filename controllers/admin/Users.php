@@ -12,6 +12,7 @@
       $this->loadModel("Users");
       $this->loadModel("Admins");
       $this->loadModel("Clients");
+      $this->loadModel("Demandes");
     }
     
     public function index() {
@@ -33,9 +34,12 @@
     
     public function get($params = []) {
       $user = $this->Users->find($params['id']);
+      $demandes = $this->Demandes->findBy(['id_user' => $params['id']]);
       
       if (!$user)
         throw new Exception("Utilisateur d'identifiant " . $params['id'] . " non trouvé");
+        
+      $this->render('get', compact('user', 'demandes'));
     }
 
     public function edit($params = []) {
