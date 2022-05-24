@@ -175,6 +175,8 @@
         } else {
           $user['is-client'] = false;
         }
+      } else {
+        $this->render('edit', compact('user', 'errors', 'success'));
       }
 
       header('Location: ' . BASE_URL_ADMIN . "/user/" . $user['id']);
@@ -207,7 +209,7 @@
 
       $this->Users->delete($params['id']);
 
-      header('Location: ' . BASE_URL_ADMIN . '/admin/users/');
+      header('Location: ' . BASE_URL_ADMIN . '/users/');
       die();
     }
 
