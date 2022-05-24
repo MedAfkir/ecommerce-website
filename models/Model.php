@@ -15,7 +15,7 @@
      * Méthode qui exécutera les requêtes
      * @param string $sql Requête SQL à exécuter
      * @param array $attributes Attributs à ajouter à la requête 
-     * @return PDOStatement|false 
+     * @return PDOStatement | false 
      */
     public function requete(string $sql, array $attributs = null) {
         // On récupère l'instance de Db

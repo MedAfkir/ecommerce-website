@@ -96,7 +96,7 @@
                           <thead>
                             <tr>
                               <th class="text-nowrap"># ID demande</th>
-                              <th class="text-nowrap text-center"># ID utilisateur</th>
+                              <th class="text-nowrap text-center">Nom d'utilisateur</th>
                               <th class="text-nowrap text-center">Quantité</th>
                             </tr>
                           </thead>
@@ -109,7 +109,7 @@
                                 <td>
                                   <div class="d-flex justify-content-center">
                                     <a href="<?= BASE_URL_ADMIN ?>/user/<?= $demande['id_user'] ?>">
-                                      <?= $demande['id_user']; ?>
+                                      <?= strtoupper($demande['lastname']) . ' ' . ucfirst($demande['firstname']); ?>
                                     </a>
                                   </div>
                                 </td>

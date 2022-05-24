@@ -25,7 +25,17 @@
         throw new Exception("Produit d'identifiant " . $params['id'] . " non trouvé");
       }
 
-      $demandes = $this->Demandes->findBy(['id_product' => $params['id']]);
+      $demandes = $this->Demandes->requete(
+        'SELECT
+          demandes.id,
+          demandes.id_product,
+          demandes.quantity,
+          demandes.id_user,
+          users.firstname,
+          users.lastname
+        FROM demandes
+        INNER JOIN users ON demandes.id_user = users.id')
+        ->fetchAll();
 
       $this->render('get', compact('product', 'demandes'));
     }
