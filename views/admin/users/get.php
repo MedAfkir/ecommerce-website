@@ -167,7 +167,7 @@
                                 <td>
                                   <div class="d-flex justify-content-center">
                                     <a href="<?= BASE_URL_ADMIN ?>/product/<?= $demande['id_product'] ?>">
-                                      <?= $demande['id_product']; ?>
+                                      <?= $demande['label']; ?>
                                     </a> 
                                   </div>
                                 </td>

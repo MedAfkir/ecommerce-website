@@ -34,11 +34,21 @@
     
     public function get($params = []) {
       $user = $this->Users->find($params['id']);
-      $demandes = $this->Demandes->findBy(['id_user' => $params['id']]);
       
       if (!$user)
-        throw new Exception("Utilisateur d'identifiant " . $params['id'] . " non trouvé");
-        
+      throw new Exception("Utilisateur d'identifiant " . $params['id'] . " non trouvé");
+      
+      $demandes = $this->Demandes->requete(
+        'SELECT
+          demandes.id,
+          demandes.id_product,
+          demandes.quantity,
+          demandes.id_user,
+          products.label
+        FROM demandes
+        INNER JOIN products ON demandes.id_product = products.id')
+        ->fetchAll();
+
       $this->render('get', compact('user', 'demandes'));
     }
 
@@ -170,7 +180,7 @@
       die();
     }
 
-    public function delete($params) {
+    public function delete($params = []) {
       $user = $this->Users->find($params['id']);
 
       if (!$user)
@@ -180,7 +190,7 @@
       $this->render('delete', compact('id'));
     }
 
-    public function postDelete($params) {
+    public function postDelete($params = []) {
       $user = $this->Users->find($params['id']);
 
       if (!$user)
@@ -198,5 +208,9 @@
 
       header('Location: ' . BASE_URL_ADMIN . '/admin/users/');
       die();
+    }
+
+    public function profil($params = []) {
+      $this->get(['id' => $params['auth']]);
     }
   }

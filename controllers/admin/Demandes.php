@@ -20,12 +20,25 @@
     }
     
     public function get($params = []) {
-      $demande = $this->Demandes->find($params['id']);
+      $demande = $this->Demandes->requete(
+        'SELECT
+          demandes.id,
+          demandes.id_product,
+          demandes.quantity,
+          demandes.id_user,
+          products.label,
+          users.firstname,
+          users.lastname
+        FROM demandes
+        INNER JOIN users ON demandes.id_user = users.id
+        INNER JOIN products ON demandes.id_product = products.id
+        WHERE demandes.id = ?', [$params['id']])
+        ->fetch();
       
       if (!$demande)
         throw new Exception("Demande d'identifiant " . $params['id'] . " non trouvée");
 
-      $this->render('demande', compact('demande'));
+      $this->render('get', compact('demande'));
     }
     
     public function add($params = []) {

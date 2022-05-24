@@ -14,6 +14,8 @@
     session_start();
 
   $router = new Router([
+    new Route('/admin/profil', [Users::class, 'profil'], ['GET']),
+
     new Route('/admin/login', [Auth::class, 'login'], ['GET']),
     new Route('/admin/signup', [Auth::class, 'signup'], ['GET']),
     new Route('/admin/logout', [Auth::class, 'logout'], ['GET']),
