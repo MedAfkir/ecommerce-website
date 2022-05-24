@@ -11,6 +11,7 @@
       parent::__construct();
       $this->loadModel("Products");
       $this->loadModel("Categories");
+      $this->loadModel("Demandes");
     }
     
     public function index() {
@@ -23,7 +24,10 @@
       if (!$product) {
         throw new Exception("Produit d'identifiant " . $params['id'] . " non trouvé");
       }
-      $this->render('product', compact('product'));
+
+      $demandes = $this->Demandes->findBy(['id_product' => $params['id']]);
+
+      $this->render('get', compact('product', 'demandes'));
     }
     
     public function add($params = []) {
