@@ -46,7 +46,8 @@
           demandes.id_user,
           products.label
         FROM demandes
-        INNER JOIN products ON demandes.id_product = products.id')
+        INNER JOIN products ON demandes.id_product = products.id
+        WHERE demandes.id_user = ?', [$params['id']])
         ->fetchAll();
 
       $this->render('get', compact('user', 'demandes'));
