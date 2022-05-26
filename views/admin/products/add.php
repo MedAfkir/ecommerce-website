@@ -30,6 +30,13 @@
                             name="label"
                           />
                         </div>
+                        <?php if(isset($errors['label'])): ?>
+                          <ul>
+                            <?php foreach($errors['label'] as $error): ?>
+                              <li class="form-text text-danger"><?= $error ?></li>
+                            <?php endforeach; ?>
+                          </ul>
+                        <?php endif; ?>
                         <div class="mb-3">
                           <label class="form-label" for="categories-list">Catégories</label>
                           <select
@@ -43,6 +50,13 @@
                             <?php endforeach; ?>
                           </select>
                         </div>
+                        <?php if(isset($errors['category'])): ?>
+                          <ul>
+                            <?php if(isset($errors['category']['exist'])): ?>
+                              <li class="form-text text-danger"><?= $errors['category']['exist'] ?></li>
+                            <?php endif; ?>
+                          </ul>
+                        <?php endif; ?>
                         <div class="mb-3">
                           <label class="form-label" for="quantity-product">Quantité</label>
                           <input
@@ -53,17 +67,25 @@
                             value="1"
                           />
                         </div>
+                        <?php if(isset($errors['quantity'])): ?>
+                          <ul>
+                            <?php foreach($errors['quantity'] as $error): ?>
+                              <li class="form-text text-danger"><?= $error ?></li>
+                            <?php endforeach; ?>
+                          </ul>
+                        <?php endif; ?>
                         <div class="mb-3">
                           <label class="form-label" for="desc-product">
                             Description
                           </label>
                           <textarea id="desc-product" class="form-control" name="description"></textarea>
                         </div>
-                        <?php if (isset($errors['length'])): ?>
-                          <div class="mb-2 text text-danger d-flex align-items-center">
-                            <i class="menu-icon tf-icons bx bx-error"></i>
-                            <?= $errors['length'] ?>
-                          </div>
+                        <?php if(isset($errors['description'])): ?>
+                          <ul>
+                            <?php foreach($errors['description'] as $error): ?>
+                              <li class="form-text text-danger"><?= $error ?></li>
+                            <?php endforeach; ?>
+                          </ul>
                         <?php endif; ?>
                         <button type="submit" class="btn btn-primary mt-3">
                           Ajouter

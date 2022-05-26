@@ -47,6 +47,13 @@
                     autocomplete="off"
                   />
                 </div>
+                <?php if(isset($errors['username'])): ?>
+                  <ul>
+                    <?php foreach($errors['username'] as $error): ?>
+                      <li class="form-text text-danger"><?= $error ?></li>
+                    <?php endforeach; ?>
+                  </ul>
+                <?php endif; ?>
                 <div class="mb-3 form-password-toggle">
                   <label class="form-label" for="password">Password</label>
                   <div class="input-group input-group-merge">
@@ -62,6 +69,13 @@
                     ></span>
                   </div>
                 </div>
+                <?php if(isset($errors['password'])): ?>
+                  <ul>
+                    <?php foreach($errors['password'] as $error): ?>
+                      <li class="form-text text-danger"><?= $error ?></li>
+                    <?php endforeach; ?>
+                  </ul>
+                <?php endif; ?>
                 <div class="mb-3">
                   <button class="btn btn-primary d-grid w-100" type="submit">
                     Se connecter

@@ -34,10 +34,24 @@
                             name="label"
                           />
                         </div>
+                        <?php if(isset($errors['label'])): ?>
+                          <ul>
+                            <?php foreach($errors['label'] as $error): ?>
+                              <li class="form-text text-danger"><?= $error ?></li>
+                            <?php endforeach; ?>
+                          </ul>
+                        <?php endif; ?>
                         <div class="mb-3">
                           <label class="form-label" for="description-category">Description</label>
                           <textarea id="description-category" class="form-control" placeholder="Description..." name="description" ></textarea>
                         </div>
+                        <?php if(isset($errors['description'])): ?>
+                          <ul>
+                            <?php foreach($errors['description'] as $error): ?>
+                              <li class="form-text text-danger"><?= $error ?></li>
+                            <?php endforeach; ?>
+                          </ul>
+                        <?php endif; ?>
                         <div class="mb-3">
                           <label class="form-label" for="basic-default-company">
                             couleur
@@ -49,6 +63,13 @@
                             name="color"
                           />
                         </div>
+                        <?php if(isset($errors['color'])): ?>
+                          <ul>
+                            <?php foreach($errors['color'] as $error): ?>
+                              <li class="form-text text-danger"><?= $error ?></li>
+                            <?php endforeach; ?>
+                          </ul>
+                        <?php endif; ?>
                         <button type="submit" class="btn btn-primary mt-3">
                           Ajouter
                         </button>

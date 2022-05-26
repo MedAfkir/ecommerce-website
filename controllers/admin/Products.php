@@ -47,11 +47,6 @@
     }
     
     public function postAdd($params = []) {
-      $categorie = $this->Categories->find($params['category']);
-      
-      if (!$categorie)
-        throw new Exception("Catégorie d'identifiant " . $params['category'] . " non trouvé");
-  
       $validation = new Validations([
         (new Validation('label', $params['label'], 'text'))
           ->setLabel('Libellé')
@@ -73,7 +68,17 @@
       $hasErrors = $validation->hasErrors();
       $errors = $validation->getErrors();
       $success = $validation->isSuccess();
-          
+
+      $categorie = $this->Categories->find($params['category']);
+      
+      if (!$categorie) {
+        if (isset($errors['category']))
+          $errors['category']['exist'] = 'Catégorie non trouvé';
+        else
+          $errors['category'] = ['exist' => 'Catégorie n\'existe pas'];
+        $success = false;
+      }
+
       if ($success) {
         $this->Products->create([
           'label' => htmlspecialchars(trim($params['label'])),

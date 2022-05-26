@@ -10,6 +10,7 @@
     public function __construct() {
       parent::__construct();
       $this->loadModel("Auth");
+      $this->loadModel("Admins");
     }
 
     public function login($params) {
@@ -22,9 +23,9 @@
 
       $validation = new Validations([
         (new Validation('username', $params['username'], 'alphanum'))
-        ->setLabel('Nom d\'utilisateur')
-        ->setRequired(true)
-        ->setMin(6),
+          ->setLabel('Nom d\'utilisateur')
+          ->setRequired(true)
+          ->setMin(6),
         (new Validation('password', $params['password'], 'text'))
           ->setLabel('Mot de passe')
           ->setRequired(true)
@@ -74,12 +75,19 @@
           ->setRequired(true)
           ->setRequired(10),
         (new Validation('birthday', $params['birthday'], 'date_ymd'))
-            ->setLabel('Date de naissance')
-            ->setRequired(true),
+          ->setLabel('Date de naissance')
+          ->setRequired(true),
       ]);
 
       $errors = $validation->getErrors();
       $success = $validation->isSuccess();
+
+      $users = $this->Auth->findBy(['username' => $params['username']]);
+
+      if (count($users) > 0) {
+        $success = false;
+        $errors['username']['used'] = "Nom d'utilisateur déja utilisé";
+      }
 
       if ($success) {
         $this->Auth->create([
@@ -89,6 +97,11 @@
           'email' => $params['email'],
           'password' => password_hash($params['password'], null),
           'birthday' => $params['birthday']
+        ]);
+        $userAdded = $this->Auth->requete('SELECT id FROM users WHERE users.username = ?', [$params['username']])->fetch();
+        $this->Admins->create([
+          'id' => $userAdded['id'],
+          'grade' => 1
         ]);
       }
 

@@ -7,6 +7,7 @@
         class="alert alert-info alert-dismissible position-absolute"
         style="right: 20px; top: 20px"
         role="alert"
+        style="z-index: 999;"
       >
         La modification a réussi
         <button
@@ -21,6 +22,7 @@
         class="alert alert-danger alert-dismissible position-absolute"
         style="right: 20px; top: 20px"
         role="alert"
+        style="z-index: 999;"
       >
         La modification a echoué
         <button

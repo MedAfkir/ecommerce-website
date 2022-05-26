@@ -1,3 +1,4 @@
+<?php if(isset($errors)) var_dump($errors); ?>
 <!DOCTYPE html>
 <html lang="fr">
   <?php require(ROOT . 'views/templates/admin/head.php'); ?>
