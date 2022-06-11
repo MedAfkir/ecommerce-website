@@ -6,10 +6,17 @@
   </div>
 
   <div class="navbar-nav-right d-flex align-items-center" id="navbar-collapse">
-    <div></div>
+    <div>
+      <form class="d-flex search-form">
+        <div class="input-group">
+          <span class="input-group-text"><i class="tf-icons bx bx-search"></i></span>
+          <input type="text" class="form-control" placeholder="Chercher utilisateurs...">
+        </div>
+      </form>
+    </div>
 
     <ul class="navbar-nav flex-row align-items-center ms-auto">
-      <?php if(!isset($_SESSION['auth'])): ?>
+      <?php if(!isset($_SESSION['auth-admin'])): ?>
         <li class="nav-item" title="Se connecter">
           <a class="nav-link" href="<?= BASE_URL_ADMIN . '/login' ?>">
             <i class="menu-icon tf-icons bx bx-user"></i>
@@ -24,7 +31,7 @@
         </li>
       <?php endif; ?> 
       <!-- User Profil -->
-      <?php if(isset($_SESSION['auth'])): ?>
+      <?php if(isset($_SESSION['auth-admin'])): ?>
         <li class="nav-item navbar-dropdown dropdown-user dropdown">
           <a class="nav-link dropdown-toggle hide-arrow" href="" data-bs-toggle="dropdown">
             <i class="bx bx-user me-2"></i>
@@ -33,7 +40,7 @@
             <li>
               <a class="dropdown-item" href="<?= BASE_URL_ADMIN . '/profil' ?>">
                 <i class="bx bx-user me-2"></i>
-                <span class="align-middle">My Profile</span>
+                <span class="align-middle">Mon Profil</span>
               </a>
             </li>
             <li>
@@ -52,3 +59,11 @@
     </ul>
   </div>
 </nav>
+<script>
+  document.querySelector('.search-form').addEventListener('submit', (e) => {
+    e.preventDefault();
+    const query = e.target[0].value;
+    if (query != "")
+      window.location = `<?= BASE_URL_ADMIN . '/search/users/' ?>${query}`;
+  })
+</script>

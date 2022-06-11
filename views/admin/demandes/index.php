@@ -7,6 +7,7 @@
       <?php require(ROOT . 'views/templates/admin/aside.php'); ?>
 
         <div class="layout-page">
+          <?php require(ROOT . 'views/templates/admin/navbar.php'); ?>
           <div class="content-wrapper">
             <div class="container-xxl flex-grow-1 container-p-y">
               <div class="row">

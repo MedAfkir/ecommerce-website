@@ -51,6 +51,12 @@
                             <?= $demande['quantity'] ?>
                           </p>
                         </div>
+                        <div class="mb-3 col-md-6">
+                          <label class="form-label">Quantité</label>
+                          <p class="form-control">
+                            <?= (new DateTime($demande['requested_at']))->format('h:i d-m-Y') ?>
+                          </p>
+                        </div>
                         <div class="d-flex justify-content-end mt-2">
                           <a
                             title="Supprimer"

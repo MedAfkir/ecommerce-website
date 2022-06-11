@@ -44,6 +44,7 @@
           demandes.id_product,
           demandes.quantity,
           demandes.id_user,
+          demandes.requested_at,
           products.label
         FROM demandes
         INNER JOIN products ON demandes.id_product = products.id
@@ -214,6 +215,6 @@
     }
 
     public function profil($params = []) {
-      $this->get(['id' => $params['auth']]);
+      $this->get(array_merge($params, ['id' => $params['auth-admin']]));
     }
   }

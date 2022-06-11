@@ -1,15 +1,16 @@
 <?php
 
+  namespace App\Controller;
+  
   class Categories extends Controller {
-    public function __construct() {}
-    
-    public function index() {}
-    
-    public function get($params = []) {}
+    public function __construct() {
+      parent::__construct();
+      $this->loadModel("Categories");
+    }
 
-    public function edit($params = []) {}
-
-    public function postEdit($params = []) {}
-
-    public function delete($params) {}
+    public function index($params = []) {
+      $products = $this->Categories->findProductsByCategory($params['id']);
+      $category = $this->Categories->find($params['id']);
+      $this->render('index', compact('products', 'category'));
+    }
   }

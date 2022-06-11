@@ -10,8 +10,8 @@
     }
 
     public function loadModel($model) {
-      require_once(ROOT . 'models/' . $model . '.php');
-      $this->$model = new ("App\Models\\" . $model)();
+      require_once(ROOT . 'models/admin/' . $model . '.php');
+      $this->$model = new ("App\Models\Admin\\" . $model)();
     }
 
     public function render($filename, $variables = []) {

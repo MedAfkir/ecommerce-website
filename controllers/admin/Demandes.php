@@ -20,20 +20,7 @@
     }
     
     public function get($params = []) {
-      $demande = $this->Demandes->requete(
-        'SELECT
-          demandes.id,
-          demandes.id_product,
-          demandes.quantity,
-          demandes.id_user,
-          products.label,
-          users.firstname,
-          users.lastname
-        FROM demandes
-        INNER JOIN users ON demandes.id_user = users.id
-        INNER JOIN products ON demandes.id_product = products.id
-        WHERE demandes.id = ?', [$params['id']])
-        ->fetch();
+      $demande = $this->Demandes->find($params['id']);
       
       if (!$demande)
         throw new Exception("Demande d'identifiant " . $params['id'] . " non trouvée");
@@ -81,7 +68,8 @@
         $this->Demandes->create([
           'id_user' => htmlspecialchars(trim($params['user'])),
           'id_product' => htmlspecialchars(trim($params['product'])),
-          'quantity' => htmlspecialchars(trim($params['quantity']))
+          'quantity' => htmlspecialchars(trim($params['quantity'])),
+          'requested_at	' => date('Y-m-d h:i:s')
         ]);
 
         $this->Products->update($product['id'], [

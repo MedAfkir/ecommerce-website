@@ -23,6 +23,8 @@ class Validation {
 
   private $key;
 
+  private $label;
+
   private $value;
   
   private $pattern = null;

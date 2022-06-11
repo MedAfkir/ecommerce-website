@@ -14,10 +14,18 @@
                   <div class="card">
                     <div class="card-header d-flex justify-content-between align-items-center">
                       <h5>Catégories</h5>
-                      <a href="<?= BASE_URL_ADMIN ?>/category/add" class="menu-link btn btn-primary">
-                        <i class="menu-icon tf-icons bx bx-plus"></i>
-                        <span>Ajouter</span>
-                      </a>
+                      <div class="d-flex align-items-center">
+                        <form class="d-flex mx-4" id="search-categories">
+                          <div class="input-group">
+                            <span class="input-group-text"><i class="tf-icons bx bx-search"></i></span>
+                            <input type="text" class="form-control" placeholder="Chercher categories...">
+                          </div>
+                        </form>
+                        <a href="<?= BASE_URL_ADMIN ?>/category/add" class="menu-link btn btn-primary">
+                          <i class="menu-icon tf-icons bx bx-plus"></i>
+                          <span>Ajouter</span>
+                        </a>
+                      </div>
                     </div>
                     <div class="card-body">
                       <div class="table-responsive">
@@ -31,6 +39,8 @@
                                 👩🏻‍💻 Libellé
                               </th>
                               <th class="text-nowrap text-center">🖥 Couleur</th>
+                              <th class="text-nowrap text-center">🖥 Ajouté le</th>
+                              <th class="text-nowrap text-center">🖥 nbr de produits</th>
                               <th class="text-nowrap text-center">🖥 Action</th>
                             </tr>
                           </thead>
@@ -53,6 +63,16 @@
                                     >
                                       <?= $category['color'] ?>
                                     </div>
+                                  </div>
+                                </td>
+                                <td>
+                                  <div class="d-flex justify-content-center">
+                                    <?= (new DateTime($category['added_at']))->format('h:i d-m-Y') ?>
+                                  </div>
+                                </td>
+                                <td>
+                                  <div class="d-flex justify-content-center">
+                                    <?= $category['nbr_products'] ?>
                                   </div>
                                 </td>
                                 <td>
@@ -98,5 +118,13 @@
       <div class="layout-overlay layout-menu-toggle"></div>
     </div>
     <?php require(ROOT . 'views/templates/admin/scripts.php'); ?>
+    <script>
+      document.querySelector('#search-categories').addEventListener('submit', (e) => {
+        e.preventDefault();
+        const query = e.target[0].value;
+        if (query != "")
+          window.location = `<?= BASE_URL_ADMIN . '/search/categories/' ?>${query}`;
+      })
+    </script>
   </body>
 </html>

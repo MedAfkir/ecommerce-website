@@ -1,0 +1,28 @@
+* {
+  box-sizing: border-box;
+  font-family: "Roboto", sans-serif !important;
+}
+
+body {
+  background: #f2f4f9;
+}
+
+::selection {
+  background-color: #9eb5f5;
+  color: #eee;
+}
+
+a,
+button,
+img {
+  user-select: none !important;
+}
+a {
+  text-decoration: none;
+}
+
+.container {
+  width: 1170px;
+  height: 100%;
+  margin: 0 auto;
+}

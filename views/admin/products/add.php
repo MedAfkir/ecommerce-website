@@ -20,7 +20,9 @@
                       <h5 class="mb-0">Ajouter produit</h5>
                     </div>
                     <div class="card-body">
-                      <form action="<?= BASE_URL_ADMIN ?>/product/add" method="POST">
+                      <form action="<?= BASE_URL_ADMIN ?>/product/add"
+                        enctype="multipart/form-data" method="POST"
+                      >
                         <div class="mb-3">
                           <label class="form-label" for="label">Libellé</label>
                           <input
@@ -38,13 +40,17 @@
                           </ul>
                         <?php endif; ?>
                         <div class="mb-3">
+                          <label for="product-img" class="form-label">Image</label>
+                          <input class="form-control" type="file" id="product-img" name="image" />
+                        </div>
+                        <div class="mb-3">
                           <label class="form-label" for="categories-list">Catégories</label>
                           <select
                             name="category"
                             id="categories-list"
                             class="form-select"
                           >
-                            <option value="-1">All</option>
+                            <option value="-1">Tous</option>
                             <?php foreach ($categories as $category): ?>
                               <option value="<?= $category['id'] ?>"><?= $category['label'] ?></option>
                             <?php endforeach; ?>
@@ -58,13 +64,30 @@
                           </ul>
                         <?php endif; ?>
                         <div class="mb-3">
+                          <label class="form-label" for="price-product">Prix</label>
+                          <input
+                            type="text"
+                            class="form-control"
+                            id="price-product"
+                            name="price"
+                            placeholder="0.00"
+                          />
+                        </div>
+                        <?php if(isset($errors['price'])): ?>
+                          <ul>
+                            <?php foreach($errors['price'] as $error): ?>
+                              <li class="form-text text-danger"><?= $error ?></li>
+                            <?php endforeach; ?>
+                          </ul>
+                        <?php endif; ?>
+                        <div class="mb-3">
                           <label class="form-label" for="quantity-product">Quantité</label>
                           <input
                             type="number"
                             class="form-control"
                             id="quantity-product"
                             name="quantity"
-                            value="1"
+                            placeholder="1"
                           />
                         </div>
                         <?php if(isset($errors['quantity'])): ?>

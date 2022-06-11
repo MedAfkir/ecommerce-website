@@ -8,12 +8,12 @@
         <?php if(isset($msgError)): if($msgError): ?>
           <p class="mb-4 mx-2"><?= $msgError ?></p>
         <?php endif; endif; ?>  
-        <a href="index.html" class="btn btn-primary"
+        <a href="<?= BASE_URL_ADMIN ?>" class="btn btn-primary"
           >Revenir à la page d'acceuil</a
         >
         <div class="mt-3">
           <img
-            src="<?= BASE_URL ?>/assets/img/illustrations/page-misc-error-light.png"
+            src="<?= BASE_URL ?>/assets/admin/img/illustrations/page-misc-error-light.png"
             alt="page-misc-error-light"
             width="500"
             class="img-fluid"

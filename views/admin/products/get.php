@@ -55,17 +55,31 @@
                           </p>
                         </div>
                         <div class="mb-3 col-md-6">
-                          <label class="form-label">Description</label>
-                          <p class="form-control">
-                            <?= strToTitle($product['description'], 100) ?>
-                          </p>
-                        </div>
-                        <div class="mb-3 col-md-6">
                           <label class="form-label">Catégorie</label>
                           <p class="form-control">
                             <a href="<?= BASE_URL_ADMIN ?>/category/<?= $product['id_category'] ?>">
                               <?= $product['id_category'] ?>
                             </a>
+                          </p>
+                        </div>
+                        <div class="mb-3 col-md-6">
+                          <label class="form-label">Prix</label>
+                          <p class="form-control">
+                            <?= $product['price'] ?>
+                          </p>
+                        </div>
+                        <div class="mb-3 col-md-6">
+                          <label class="form-label">Description</label>
+                          <ul style="border: 1px solid #d9dee3; border-radius: 0.375rem; padding: 0.4375rem 0.875rem 0.4375rem 1.775rem;">
+                            <?php foreach(explode("\n", $product['description']) as $line): ?>
+                              <li><?= $line ?></li>
+                            <?php endforeach; ?>
+                          </ul>
+                        </div>
+                        <div class="mb-3 col-md-6">
+                          <label class="form-label">Ajouté le</label>
+                          <p class="form-control">
+                            <?= (new DateTime($product['added_at']))->format('h:m d-m-Y') ?>
                           </p>
                         </div>
                         <div class="d-flex justify-content-end mt-2">

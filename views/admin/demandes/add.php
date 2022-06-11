@@ -2,7 +2,7 @@
 <html lang="fr" class="light-style layout-menu-fixed">
   <?php require(ROOT . 'views/templates/admin/head.php'); ?>
   <body>
-  <?php if(isset($success)): if ($success): ?>
+    <?php if(isset($success)): if ($success): ?>
       <div
         class="alert alert-info alert-dismissible position-absolute"
         style="right: 20px; top: 20px"

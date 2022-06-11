@@ -3,8 +3,8 @@
   class="layout-menu menu-vertical menu bg-menu-theme"
 >
   <div class="app-brand demo">
-    <a href="#" class="app-brand-link">
-      <span class="app-brand-text demo menu-text fw-bolder ms-2">Logo</span>
+    <a href="<?= BASE_URL_ADMIN ?>" class="app-brand-link">
+      <span class="app-brand-text demo menu-text fw-bolder ms-2">Admin panel</span>
     </a>
     <a
       href="javascript:void(0);"
@@ -43,7 +43,7 @@
     <li class="menu-item">
       <a href="<?= BASE_URL_ADMIN ?>/products" class="menu-link">
         <i class="menu-icon tf-icons bx bx-package"></i>
-        <div data-i18n="Users">Produis</div>
+        <div data-i18n="Users">Produits</div>
       </a>
     </li>
     <li class="menu-item">

@@ -56,6 +56,9 @@
           ->setLabel('Catégorie')
           ->setRequired(true)
           ->setMin(1),
+        (new Validation('price', $params['price'], 'float'))
+          ->setLabel('Prix')
+          ->setRequired(true),
         (new Validation('description', $params['description'], 'text'))
           ->setLabel('Description')
           ->setRequired(true),
@@ -80,11 +83,14 @@
       }
 
       if ($success) {
-        $this->Products->create([
+        $this->Products->create([   
           'label' => htmlspecialchars(trim($params['label'])),
           'description' => htmlspecialchars(trim($params['description'])),
+          'image' => uniqid() . '.png',
+          'price' => htmlspecialchars(trim($params['price'])),
           'quantity' => htmlspecialchars(trim($params['quantity'])),
-          'id_category' => htmlspecialchars(trim($params['category']))
+          'id_category' => htmlspecialchars(trim($params['category'])),
+          'added_at	' => date('Y-m-d h:i:s')
         ]);
       }
         
@@ -118,6 +124,9 @@
         (new Validation('label', $params['label'], 'text'))
           ->setLabel('Libellé')
           ->setRequired(true),
+        (new Validation('price', $params['price'], 'float'))
+          ->setLabel('Prix')
+          ->setRequired(true),
         (new Validation('description', $params['description'], 'text'))
           ->setLabel('Description')
           ->setRequired(true),
@@ -134,6 +143,7 @@
       if ($validation->isSuccess()) {
         $state = $this->Products->update($params['id'], [
           'label' => htmlspecialchars(trim($params['label'])),
+          'price' => htmlspecialchars(trim($params['price'])),
           'quantity' => htmlspecialchars(trim($params['quantity'])),
           'description' => htmlspecialchars(trim($params['description'])),
           'id_category' => htmlspecialchars(trim($params['category']))

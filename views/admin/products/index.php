@@ -14,10 +14,18 @@
                   <div class="card">
                     <div class="card-header d-flex justify-content-between align-items-center">
                       <h5>Produits</h5>
-                      <a href="<?= BASE_URL_ADMIN ?>/product/add" class="menu-link btn btn-primary">
-                        <i class="menu-icon tf-icons bx bx-plus"></i>
-                        <span>Ajouter</span>
-                      </a>
+                      <div class="d-flex align-items-center">
+                        <form class="d-flex mx-4" id="search-products">
+                          <div class="input-group">
+                            <span class="input-group-text"><i class="tf-icons bx bx-search"></i></span>
+                            <input type="text" class="form-control" placeholder="Chercher produits...">
+                          </div>
+                        </form>
+                        <a href="<?= BASE_URL_ADMIN ?>/product/add" class="menu-link btn btn-primary">
+                          <i class="menu-icon tf-icons bx bx-plus"></i>
+                          <span>Ajouter</span>
+                        </a>
+                      </div>
                     </div>
                     <div class="card-body">
                       <div class="table-responsive">
@@ -32,6 +40,9 @@
                               </th>
                               <th class="text-nowrap text-center">
                                 # ID catégorie
+                              </th>
+                              <th class="text-nowrap text-center">
+                                👩🏻‍💻 Prix
                               </th>
                               <th class="text-nowrap text-center">
                                 👩🏻‍💻 Quantité
@@ -51,6 +62,11 @@
                                 <td>
                                   <div class="d-flex justify-content-center">
                                     <?= $product['id_category'] ?>
+                                  </div>
+                                </td>
+                                <td>
+                                  <div class="d-flex justify-content-center">
+                                    $<?= $product['price'] ?>
                                   </div>
                                 </td>
                                 <td>
@@ -103,5 +119,13 @@
       <div class="layout-overlay layout-menu-toggle"></div>
     </div>
     <?php require(ROOT . 'views/templates/admin/scripts.php'); ?>
+    <script>
+      document.querySelector('#search-products').addEventListener('submit', (e) => {
+        e.preventDefault();
+        const query = e.target[0].value;
+        if (query != "")
+          window.location = `<?= BASE_URL_ADMIN . '/search/products/' ?>${query}`;
+      })
+    </script>
   </body>
 </html>

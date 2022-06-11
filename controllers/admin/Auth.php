@@ -13,7 +13,7 @@
       $this->loadModel("Admins");
     }
 
-    public function login($params) {
+    public function login() {
       $this->render('login');
     }
 
@@ -40,7 +40,7 @@
         if ($user) {
           if (PHP_SESSION_NONE === session_status())
             session_start();
-          $_SESSION['auth'] = $user['id'];
+          $_SESSION['auth-admin'] = $user['id'];
 
           header('Location: ' . BASE_URL_ADMIN . '/');
           die();  
@@ -96,7 +96,8 @@
           'username' => $params['username'],
           'email' => $params['email'],
           'password' => password_hash($params['password'], null),
-          'birthday' => $params['birthday']
+          'birthday' => $params['birthday'],
+          'created_at' => date('Y-m-d h:i:s')
         ]);
         $userAdded = $this->Auth->requete('SELECT id FROM users WHERE users.username = ?', [$params['username']])->fetch();
         $this->Admins->create([

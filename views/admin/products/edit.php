@@ -105,6 +105,25 @@
                           </ul>
                         <?php endif; ?>
                         <div class="mb-3">
+                          <label class="form-label" for="price-product">
+                            Prix
+                          </label>
+                          <input
+                            type="text"
+                            class="form-control"
+                            id="price-product"
+                            name="price"
+                            value="<?= $product['price'] ?>"
+                          />
+                        </div>
+                        <?php if (isset($errors['price'])): ?>
+                          <ul>
+                            <?php foreach ($errors['price'] as $value): ?>
+                              <li class="form-text text-danger"><?= $value ?></li>
+                            <?php endforeach; ?>
+                          </ul>
+                        <?php endif; ?>
+                        <div class="mb-3">
                           <label class="form-label" for="quantity-product"
                             >Quantité</label
                           >

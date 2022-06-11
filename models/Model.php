@@ -33,6 +33,18 @@
         }
     }
 
+    public function requestWithSpecificTypes(string $sql, $attributes = []) {
+        // On récupère l'instance de Db
+        $this->db = Db::getInstance();
+
+        $query = $this->db->prepare($sql);
+        foreach($attributes as $key => $attr) {
+            $query->bindParam($key, $attr['value'], $attr['type']);
+        }
+        $query->execute();
+        return $query;
+    }
+
     /**
      * Sélection de tous les enregistrements d'une table
      * @return array Tableau des enregistrements trouvés

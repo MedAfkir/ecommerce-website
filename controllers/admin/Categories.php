@@ -41,7 +41,8 @@
         $state = $this->Categories->create([
           'label' => htmlspecialchars(trim($params['label'])),
           'description' => htmlspecialchars(trim($params['description'])),
-          'color' => htmlspecialchars(trim($params['color']))
+          'color' => htmlspecialchars(trim($params['color'])),
+          'added_at' => date('Y-m-d h:i:s')
         ]);
 
         if (!$state) {
@@ -59,7 +60,7 @@
         throw new Exception("Catégorie d'identifiant " . $params['id'] . " non trouvée");
       }
       
-      $this->render('category', compact('category'));
+      $this->render('get', compact('category'));
     }
 
     public function edit($params = []) {

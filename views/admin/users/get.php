@@ -156,6 +156,7 @@
                               <th class="text-nowrap"># ID demande</th>
                               <th class="text-nowrap text-center"># ID produit</th>
                               <th class="text-nowrap text-center">Quantité</th>
+                              <th class="text-nowrap text-center">Demandé le</th>
                             </tr>
                           </thead>
                           <tbody>
@@ -174,6 +175,11 @@
                                 <td>
                                   <div class="d-flex justify-content-center">
                                     <?= $demande['quantity']; ?>
+                                  </div>
+                                </td>
+                                <td>
+                                  <div class="d-flex justify-content-center">
+                                    <?= (new DateTime($demande['requested_at']))->format('h:i d-m-Y') ?>
                                   </div>
                                 </td>
                               </tr>
